@@ -11,7 +11,7 @@
             IEnumerable<Item> GetItems();
             Item GetItem(int id);
             Item CreateItem(Item item);
-            Item UpdateItem(Item item);
+            Item UpdateItem(int itemid ,Item item);
             Item DeleteItem(int id);
         }
         public class ItemService : IItemService
@@ -46,7 +46,7 @@
                 return item;
             }
 
-            public Item UpdateItem(Item item)
+            public Item UpdateItem(int itemId, Item item)
             {
                 var existingItem = _items.FirstOrDefault(i => i.Id == item.Id);
                 if (existingItem == null)

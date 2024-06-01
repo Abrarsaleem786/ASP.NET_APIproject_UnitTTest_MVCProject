@@ -10,25 +10,25 @@ namespace APIproject.Controllers
     [Route("order/[controller]")]
     public class orderController : ControllerBase
     {
-        private readonly orderService orderService;
+        private readonly IorderService _orderService;
 
-        public orderController(orderService orderService)
+        public orderController(IorderService orderService)
         {
-            this.orderService = orderService;
+            _orderService = orderService;
 
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<order>> GetOrders()
         {
-            var orders = orderService.GetOrders();
+            var orders = _orderService.GetOrders();
             return Ok(orders);
         }
 
         [HttpGet("{id}")]
         public ActionResult<order> GetOrder(int id)
         {
-            var order = orderService.GetOrder(id);
+            var order = _orderService.GetOrder(id);
             if (order == null)
             {
                 return NotFound();
@@ -37,10 +37,10 @@ namespace APIproject.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Item> CreateOrder(order order)
+        public ActionResult<order> CreateOrder(order order)
         {
-            var createdItem = orderService.CreateOrder(order);
-            return CreatedAtAction(nameof(createdItem), new { id = createdItem.order_id }, createdItem);
+            var createdOrder = _orderService.CreateOrder(order);
+            return CreatedAtAction(nameof(GetOrder), new { id = createdOrder.order_id }, createdOrder);
         }
 
         [HttpPut("{id}")]
@@ -51,25 +51,25 @@ namespace APIproject.Controllers
                 return BadRequest();
             }
 
-            var updatedOrder = orderService.UpdateOrder(order);
+            var updatedOrder = _orderService.UpdateOrder(id,order);
             if (updatedOrder == null)
             {
                 return NotFound();
             }
 
-            return NoContent();
+            return Ok(updatedOrder);
         }
 
         [HttpDelete("{id}")]
         public IActionResult DeleteOrder(int id)
         {
-            var deletedOrder = orderService.DeleteOrder(id);
+            var deletedOrder = _orderService.DeleteOrder(id);
             if (deletedOrder == null)
             {
                 return NotFound();
             }
 
-            return NoContent();
+            return Ok(deletedOrder);
         }
     }
 }

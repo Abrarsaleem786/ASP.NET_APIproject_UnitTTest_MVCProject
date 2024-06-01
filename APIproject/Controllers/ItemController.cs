@@ -9,12 +9,13 @@ namespace APIproject.Controllers
     [Route("item/[controller]")]      
     public class ItemController : ControllerBase
     {
-        private readonly ItemService _itemService;
+        public readonly IItemService _itemService;
 
-        public ItemController(ItemService itemService)
+        public ItemController(IItemService itemService)
         {
             _itemService = itemService;
         }
+
 
         [HttpGet]
         public ActionResult<IEnumerable<Item>> GetItems()
@@ -49,13 +50,13 @@ namespace APIproject.Controllers
                 return BadRequest();
             }
 
-            var updatedItem = _itemService.UpdateItem(item);
+            var updatedItem = _itemService.UpdateItem(id,item);
             if (updatedItem == null)
             {
                 return NotFound();
             }
 
-            return NoContent();
+            return Ok(updatedItem);
         }
 
         [HttpDelete("{id}")]
@@ -67,7 +68,7 @@ namespace APIproject.Controllers
                 return NotFound();
             }
 
-            return NoContent();
+            return Ok(deletedItem);
         }
     }
 }

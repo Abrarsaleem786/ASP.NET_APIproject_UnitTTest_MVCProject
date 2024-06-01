@@ -7,7 +7,7 @@ namespace APIproject.services
         IEnumerable<order> GetOrders();
         order GetOrder(int id);
         order CreateOrder(order order);
-        order UpdateOrder(order order);
+        order UpdateOrder(int id, order order);
         order DeleteOrder(int id);
     }
     public class orderService : IorderService
@@ -43,7 +43,7 @@ namespace APIproject.services
             return order;
         }
 
-        public order UpdateOrder(order order)
+        public order UpdateOrder(int id, order order)
         {
             var existingOrder = _orders.FirstOrDefault(i => i.order_id == order.order_id);
             if (existingOrder == null)

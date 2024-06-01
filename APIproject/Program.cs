@@ -1,11 +1,12 @@
 using APIproject.services;
 using APIproject.services.APIproject.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddSingleton<ItemService>();
-    builder.Services.AddSingleton<orderService>();
+builder.Services.AddScoped<IItemService, ItemService>();
+builder.Services.AddScoped<IorderService, orderService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -14,17 +14,17 @@ accept: application/json
 POST {{APIproject_HostAddress}}/item/item  
 Content-Type: application/json
 {
-  "name": "abrar",
-  "description": "abrar saleem"
+  "name": "Table",
+  "description": "Brown Table"
 }
 ###
 
 PUT {{APIproject_HostAddress}}/item/item/{{item_id}}
 Accept: application/json
 Content-Type: application/json
-{  "id":4,
-  "name": "aqib",
-  "description": "aqib arshad"
+{  "id":3,
+  "name": "Desk",
+  "description": "Large Size"
 }
 
 ###
@@ -55,9 +55,8 @@ Content-Type: application/json
 
 
  {
-  "order_id": 0,
-  "order_name": "string",
-  "order_details": "string"
+  "order_name": "chicken",
+  "order_details": "leg piece"
 }
 
 

@@ -20,7 +20,7 @@ namespace APIproject.services
             _orders = new List<Order>();
             new List<Order>
             {
-                new Order { orderID = 1, orderName = "pizzza", orderDetails = "large pizza" },
+                new Order { orderID = 1, orderName = "pizza", orderDetails = "large pizza" },
                 new Order { orderID = 2, orderName = "rice", orderDetails = "plao" },
                 new Order { orderID = 3, orderName = "burgers", orderDetails = "3 zinger burgers" }
             }.ForEach(order => _orders.Add(order));

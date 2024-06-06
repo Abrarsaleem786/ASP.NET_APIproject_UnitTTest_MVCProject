@@ -14,16 +14,16 @@ using System.Threading.Tasks;
 namespace APIprojectTest.TestControllers
 {
     [TestClass]
-    public class OrderTestController
+    public class OrderController
     {
         public Mock<IOrderService> _serviceMock;
-        public OrderController _controller;
+        public APIproject.Controllers.OrderController _controller;
 
         [TestInitialize]
         public void Setup()
         {
             _serviceMock = new Mock<IOrderService>();
-            _controller = new OrderController(_serviceMock.Object);
+            _controller = new APIproject.Controllers.OrderController(_serviceMock.Object);
         }
         [TestMethod]
         public void OrderController_GetItems_ReturnsOkResult()

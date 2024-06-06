@@ -13,23 +13,23 @@ using System.Threading.Tasks;
 namespace APIprojectTest.TestControllers
 {
     [TestClass]
-    public class ItemTestController
+    public class ItemController
     {
         public Mock<IItemService> _serviceMock;
-        public ItemController _controller;
+        public APIproject.Controllers.ItemController _controller;
 
         [TestInitialize]
         public void Setup()
         {
             _serviceMock = new Mock<IItemService>();
-            _controller = new ItemController(_serviceMock.Object);
+            _controller = new APIproject.Controllers.ItemController(_serviceMock.Object);
         }
         [TestMethod]
         public void ItemController_GetItems_ReturnsOkResult()
         {
             //Arrange
             var items = new List<Item>
-            {
+          {
                 new Item { Id = 1, Name = "car", Description = "Lamborghini" },
                 new Item { Id = 2, Name = "toy", Description = "Aeroplane" },
                 new Item { Id = 3, Name = "chair", Description = "white chair" }

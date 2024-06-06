@@ -8,25 +8,25 @@ namespace APIproject.Controllers
 {
     [ApiController]
     [Route("order/[controller]")]
-    public class orderController : ControllerBase
+    public class OrderController : ControllerBase
     {
-        private readonly IorderService _orderService;
+        private readonly IOrderService _orderService;
 
-        public orderController(IorderService orderService)
+        public OrderController(IOrderService orderService)
         {
             _orderService = orderService;
 
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<order>> GetOrders()
+        public ActionResult<IEnumerable<Order>> GetOrders()
         {
             var orders = _orderService.GetOrders();
             return Ok(orders);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<order> GetOrder(int id)
+        public ActionResult<Order> GetOrder(int id)
         {
             var order = _orderService.GetOrder(id);
             if (order == null)
@@ -37,16 +37,16 @@ namespace APIproject.Controllers
         }
 
         [HttpPost]
-        public ActionResult<order> CreateOrder(order order)
+        public ActionResult<Order> CreateOrder(Order order)
         {
             var createdOrder = _orderService.CreateOrder(order);
-            return CreatedAtAction(nameof(GetOrder), new { id = createdOrder.order_id }, createdOrder);
+            return CreatedAtAction(nameof(GetOrder), new { id = createdOrder.orderID }, createdOrder);
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateOrder(int id, order order)
+        public IActionResult UpdateOrder(int id, Order order)
         {
-            if (id != order.order_id)
+            if (id != order.orderID)
             {
                 return BadRequest();
             }

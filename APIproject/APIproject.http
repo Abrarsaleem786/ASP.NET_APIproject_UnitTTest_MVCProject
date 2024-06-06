@@ -1,17 +1,17 @@
 @APIproject_HostAddress = https://localhost:44392
 @item_id=3
 // endpoints for item controller
-GET {{APIproject_HostAddress}}/item/item
+GET {{APIproject_HostAddress}}/item/Item
 Accept: application/json
 
 ###
 
-GET {{APIproject_HostAddress}}/item/item/{{item_id}}
+GET {{APIproject_HostAddress}}/item/Item/{{item_id}}
 accept: application/json
 
 ###
 
-POST {{APIproject_HostAddress}}/item/item  
+POST {{APIproject_HostAddress}}/item/Item  
 Content-Type: application/json
 {
   "name": "Table",
@@ -19,7 +19,7 @@ Content-Type: application/json
 }
 ###
 
-PUT {{APIproject_HostAddress}}/item/item/{{item_id}}
+PUT {{APIproject_HostAddress}}/item/Item/{{item_id}}
 Accept: application/json
 Content-Type: application/json
 {  "id":3,
@@ -28,7 +28,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{APIproject_HostAddress}}/item/item/{{item_id}}
+DELETE {{APIproject_HostAddress}}/item/Item/{{item_id}}
 Accept: application/json
 
  ###
@@ -37,20 +37,20 @@ Accept: application/json
 
 @order_id=2
 
-GET {{APIproject_HostAddress}}/order/order
+GET {{APIproject_HostAddress}}/order/Order
 Accept: application/json
 
 ###
 
 
 
-GET {{APIproject_HostAddress}}/order/order/{{order_id}}
+GET {{APIproject_HostAddress}}/order/Order/{{order_id}}
 
 ###
 
 
 
-POST {{APIproject_HostAddress}}/order/order
+POST {{APIproject_HostAddress}}/order/Order
 Content-Type: application/json
 
 
@@ -63,7 +63,7 @@ Content-Type: application/json
 ###
 
 
-PUT {{APIproject_HostAddress}}/order/order/{{order_id}}
+PUT {{APIproject_HostAddress}}/order/Order/{{order_id}}
 Content-Type: application/json
 
 {
@@ -76,6 +76,6 @@ Content-Type: application/json
 
   
 
-DELETE {{APIproject_HostAddress}}/order/order/{{order_id}}
+DELETE {{APIproject_HostAddress}}/order/Order/{{order_id}}
 
 ###

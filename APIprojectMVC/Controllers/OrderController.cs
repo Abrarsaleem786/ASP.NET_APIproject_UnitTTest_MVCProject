@@ -9,16 +9,16 @@ namespace APIprojectMVC.Controllers
     public class OrderController : Controller
 
     {
-        public OrderServices orderServices;
+        public IOrderService _orderServices;
 
-        public OrderController(OrderServices orderServices)
+        public OrderController(IOrderService orderServices)
         {
-            this.orderServices= orderServices;
+            _orderServices= orderServices;
         }
 
         public async Task<IActionResult> Index()
         {
-            List<OrderModel> items = await orderServices.GetOrders();
+            List<OrdersModel> items = await _orderServices.GetAllOrders();
             return View(items);
         }
     }

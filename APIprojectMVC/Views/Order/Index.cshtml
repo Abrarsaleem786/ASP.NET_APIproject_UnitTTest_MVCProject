@@ -1,4 +1,4 @@
-﻿@model IEnumerable<APIprojectMVC.Models.OrderModel>
+﻿@model IEnumerable<APIprojectMVC.Models.OrdersModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,13 +13,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.order_id)
+                @Html.DisplayNameFor(model => model.orderID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.order_name)
+                @Html.DisplayNameFor(model => model.orderName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.order_details)
+                @Html.DisplayNameFor(model => model.orderDetails)
             </th>
             <th></th>
         </tr>
@@ -28,13 +28,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.order_id)
+                @Html.DisplayFor(modelItem => item.orderID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.order_name)
+                @Html.DisplayFor(modelItem => item.orderName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.order_details)
+                @Html.DisplayFor(modelItem => item.orderDetails)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

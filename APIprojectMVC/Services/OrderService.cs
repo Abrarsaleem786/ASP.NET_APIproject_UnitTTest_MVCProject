@@ -4,25 +4,25 @@ using Newtonsoft.Json;
 
 namespace APIprojectMVC.Services
 {
-    public interface OServices
+    public interface IOrderService
     {
-        public Task<List<OrderModel>> GetOrders();
+        public Task<List<OrdersModel>> GetAllOrders();
     }
 
-    public class OrderServices : OServices
+    public class OrderService : IOrderService
     {
-        public async Task<List<OrderModel>> GetOrders()
+        public async Task<List<OrdersModel>> GetAllOrders()
         {
-            List<OrderModel> items = new List<OrderModel>();
+            List<OrdersModel> items = new List<OrdersModel>();
             using (HttpClient httpClient = new HttpClient())
             {
                 Uri Uri = new Uri("https://localhost:44392/order");
                 httpClient.BaseAddress = Uri;
-                HttpResponseMessage response = await httpClient.GetAsync(httpClient.BaseAddress + "/order");
+                HttpResponseMessage response = await httpClient.GetAsync(httpClient.BaseAddress + "/Order");
                 if (response.IsSuccessStatusCode)
                 {
                     string data = await response.Content.ReadAsStringAsync();
-                    items = JsonConvert.DeserializeObject<List<OrderModel>>(data);
+                    items = JsonConvert.DeserializeObject<List<OrdersModel>>(data);
                 }
             }
             return items;

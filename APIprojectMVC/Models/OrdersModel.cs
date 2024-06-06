@@ -1,6 +1,6 @@
-﻿namespace APIproject.model
+﻿namespace APIprojectMVC.Models
 {
-    public class Order
+    public class OrdersModel
     {
         public int orderID { get; set; }
         public string orderName { get; set; }

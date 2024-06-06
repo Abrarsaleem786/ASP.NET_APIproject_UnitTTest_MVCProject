@@ -2,63 +2,63 @@
 
 namespace APIproject.services
 {
-    public interface IorderService
+    public interface IOrderService
     {
-        IEnumerable<order> GetOrders();
-        order GetOrder(int id);
-        order CreateOrder(order order);
-        order UpdateOrder(int id, order order);
-        order DeleteOrder(int id);
+        IEnumerable<Order> GetOrders();
+        Order GetOrder(int id);
+        Order CreateOrder(Order order);
+        Order UpdateOrder(int id, Order order);
+        Order DeleteOrder(int id);
     }
-    public class orderService : IorderService
+    public class OrderService : IOrderService
     {
        
-        private readonly List<order> _orders;
+        private readonly List<Order> _orders;
 
-        public orderService()
+        public OrderService()
         {
-            _orders = new List<order>();
-            new List<order>
+            _orders = new List<Order>();
+            new List<Order>
             {
-                new order { order_id = 1, order_name = "pizzza", order_details = "large pizza" },
-                new order { order_id = 2, order_name = "rice", order_details = "plao" },
-                new order { order_id = 3, order_name = "burgers", order_details = "3 zinger burgers" }
+                new Order { orderID = 1, orderName = "pizzza", orderDetails = "large pizza" },
+                new Order { orderID = 2, orderName = "rice", orderDetails = "plao" },
+                new Order { orderID = 3, orderName = "burgers", orderDetails = "3 zinger burgers" }
             }.ForEach(order => _orders.Add(order));
         }
 
-        public IEnumerable<order> GetOrders()
+        public IEnumerable<Order> GetOrders()
         {
             return _orders;
         }
 
-        public order GetOrder(int id)
+        public Order GetOrder(int id)
         {
-            return _orders.FirstOrDefault(order => order.order_id == id);
+            return _orders.FirstOrDefault(order => order.orderID == id);
         }
 
-        public order CreateOrder(order order)
+        public Order CreateOrder(Order order)
         {
-            order.order_id = _orders.Count + 1;
+            order.orderID = _orders.Count + 1;
             _orders.Add(order);
             return order;
         }
 
-        public order UpdateOrder(int id, order order)
+        public Order UpdateOrder(int id, Order order)
         {
-            var existingOrder = _orders.FirstOrDefault(i => i.order_id == order.order_id);
+            var existingOrder = _orders.FirstOrDefault(i => i.orderID == order.orderID);
             if (existingOrder == null)
             {
                 return null;
             }
 
-            existingOrder.order_name = order.order_name;
-            existingOrder.order_details = order.order_details;
+            existingOrder.orderName = order.orderName;
+            existingOrder.orderDetails = order.orderDetails;
             return existingOrder;
         }
 
-        public order DeleteOrder(int id)
+        public Order DeleteOrder(int id)
         {
-            var order = _orders.FirstOrDefault(i => i.order_id == id);
+            var order = _orders.FirstOrDefault(i => i.orderID == id);
             if (order != null)
             {
                 _orders.Remove(order);

@@ -9,23 +9,20 @@ namespace APIprojectMVC.Controllers
     public class ItemController : Controller
 
     {
-        public ItemServices itemServices;
+        public IItemService _itemServices;
 
-       public ItemController(ItemServices itemServices)
+       public ItemController(IItemService itemServices)
         {
-            this.itemServices = itemServices;
+            _itemServices = itemServices;
         }
 
         public async Task<IActionResult> Index()
         {
-            List<ItemsModel> items = await itemServices.GetItems();
+            List<ItemsModel> items = await _itemServices.GetAllItems();
             return View(items);
         }
 
-        public ActionResult Create()
-        {
-            return View();
-        }
+        
 
 
 

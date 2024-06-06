@@ -5,14 +5,14 @@ using System.Net.Http;
 
 namespace APIprojectMVC.Services
 {
-    public interface IServices
+    public interface IItemService
     {
-        public Task<List<ItemsModel>> GetItems();
+        public Task<List<ItemsModel>> GetAllItems();
     }
 
-    public class ItemServices : IServices
+    public class ItemService : IItemService
     {
-        public async Task<List<ItemsModel>> GetItems()
+        public async Task<List<ItemsModel>> GetAllItems()
         {
             List<ItemsModel> items = new List<ItemsModel>();
             using (HttpClient httpClient = new HttpClient())

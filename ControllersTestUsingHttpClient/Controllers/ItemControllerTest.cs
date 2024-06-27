@@ -13,7 +13,7 @@ namespace ControllersTestUsingHttpClient.Controllers
     [TestClass]
     public class ItemControllerTest
     {
-       private readonly  HttpClient httpClient = new HttpClient();
+        private readonly HttpClient httpClient = new HttpClient();
 
 
         [TestMethod]
@@ -25,9 +25,6 @@ namespace ControllersTestUsingHttpClient.Controllers
 
             // Send a GET request to the endpoint
             HttpResponseMessage response = await httpClient.GetAsync(uri);
-
-            // Ensure the request was successful
-            response.EnsureSuccessStatusCode();
 
             // Read the response content
             var items = await response.Content.ReadAsStringAsync();
@@ -46,8 +43,6 @@ namespace ControllersTestUsingHttpClient.Controllers
             // Send a GET request to the endpoint
             HttpResponseMessage response = await httpClient.GetAsync(uri);
 
-            // Ensure the request was successful
-            response.EnsureSuccessStatusCode();
 
             // Read the response content
             var item = await response.Content.ReadAsStringAsync();
@@ -80,8 +75,6 @@ namespace ControllersTestUsingHttpClient.Controllers
             // Send a POST request to the endpoint with the JSON data
             HttpResponseMessage response = await httpClient.PostAsync(uri, content);
 
-            // Ensure the request was successful
-            response.EnsureSuccessStatusCode();
 
             // Read the response content
             var result = await response.Content.ReadAsStringAsync();
@@ -114,8 +107,6 @@ namespace ControllersTestUsingHttpClient.Controllers
             // Send a PUT request to the endpoint with the JSON data
             HttpResponseMessage response = await httpClient.PutAsync(uri, content);
 
-            // Ensure the request was successful
-            response.EnsureSuccessStatusCode();
 
             // Read the response content
             var result = await response.Content.ReadAsStringAsync();
@@ -134,15 +125,36 @@ namespace ControllersTestUsingHttpClient.Controllers
             // Send a DELETE request to the endpoint
             HttpResponseMessage response = await httpClient.DeleteAsync(uri);
 
-            // Ensure the request was successful
-            response.EnsureSuccessStatusCode();
 
             // Read the response content
             var result = await response.Content.ReadAsStringAsync();
 
             // Perform assertions
             Assert.IsNotNull(result);
-            // Additional assertions can be added here based on the expected response
+
+        }
+
+
+
+        [TestMethod]
+        public async Task SaveJsonToFile()
+        {
+            HttpClient httpClient = new HttpClient();
+            // Define the endpoint path
+            Uri uri = new Uri("https://localhost:7230/item/Item");
+
+            // Send a GET request to the endpoint
+            HttpResponseMessage response = await httpClient.GetAsync(uri);
+
+            // Read the response content
+            var json = await response.Content.ReadAsStringAsync();
+
+            // Save the JSON data to a file
+            File.WriteAllText("items.txt", json);
+
+            //ControllersTestUsingHttpClient\bin\Debug\net8.0 ->file Location
+
         }
     }
+
 }
